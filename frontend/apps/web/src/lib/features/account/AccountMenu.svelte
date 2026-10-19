@@ -34,6 +34,11 @@
       icon: IconKey,
       label: m.api_keys(),
       url: "/account/api-keys"
+    },
+    {
+      icon: IconLink,
+      label: m.mcp_my_connections(),
+      url: "/account/mcp-connections"
     }
   ];
 </script>
