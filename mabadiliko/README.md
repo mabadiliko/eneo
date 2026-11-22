@@ -49,6 +49,19 @@ migrated by this build is ahead of plain v2.3.2: going back means
 PR branch itself (based on `develop`) may hold revisions that v2.3.2 doesn't
 know; start such a test from a fresh database.
 
+## Tests (2026-11-22)
+
+Backend unit tests, run like upstream CI (`uv run pytest -m "not integration"
+tests/unit` with CI's placeholder environment): 4375 pass, 3 fail.
+- `test_alembic_migration_graph.py` passes (one head).
+- `test_identity_headers.py::…::test_management_refresh_adds_tools_through_bounded_catalog_staging`
+  fails on the PR head itself too (also red in the PR's CI). It seems not to
+  have been updated for the PR's commit 5a14c0a, which changes how a server's
+  first catalog is accepted.
+- `test_space_write_ownership.py::test_create_assistant_uses_same_relation_writer_and_preserves_initial_settings`
+  and `test_api_key_route_coverage.py::…::test_no_duplicate_method_permission_map`
+  fail on plain v2.3.2 as well, in this environment.
+
 ## Updating
 
 When the PR gets new commits, cherry-pick them onto this branch, change
