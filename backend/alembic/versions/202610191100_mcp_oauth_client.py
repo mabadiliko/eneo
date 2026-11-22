@@ -12,7 +12,7 @@ authorization server to that server's issuer. ``idp_user_tokens`` keeps the
 login ID token for tenants that enable the ID-JAG strategy.
 
 Revision ID: 202610191100
-Revises: 202610191000
+Revises: 202610261200
 Create Date: 2026-10-19
 
 """
@@ -24,7 +24,7 @@ from alembic import op
 
 # revision identifiers, used by Alembic.
 revision = "202610191100"
-down_revision = "202610191000"
+down_revision = "202610261200"
 branch_labels = None
 depends_on = None
 
