@@ -80,7 +80,7 @@ EOF
 if (( PUSH )); then
     run <<EOF
 set -euo pipefail
-printf '%s' '$token' | podman login -q --authfile $dir/auth.json -u $gh_user --password-stdin ghcr.io
+printf '%s' '$token' | podman login --authfile $dir/auth.json -u $gh_user --password-stdin ghcr.io >/dev/null
 for img in eneo-backend eneo-frontend eneo-tool-runtime; do
     podman push -q --authfile $dir/auth.json --digestfile $dir/digest $REG/\$img:$TAG
     echo "$REG/\$img:$TAG@\$(cat $dir/digest)"
