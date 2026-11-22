@@ -71,7 +71,8 @@ app_args=(--build-arg APP_VERSION=$VERSION --build-arg APP_REVISION=\$rev
 
 podman build -q "\${labels[@]}" "\${app_args[@]}" -t $REG/eneo-backend:$TAG src/backend
 podman build -q "\${labels[@]}" "\${app_args[@]}" -t $REG/eneo-frontend:$TAG src/frontend
-podman build -q "\${labels[@]}" --build-arg VERSION=$VERSION --build-arg GIT_SHA=\$rev \
+# docker format: the OCI format drops the tool runtime's HEALTHCHECK.
+podman build -q --format docker "\${labels[@]}" --build-arg VERSION=$VERSION --build-arg GIT_SHA=\$rev \
     --build-arg SOURCE_URL=$SOURCE_URL -t $REG/eneo-tool-runtime:$TAG src/tool-runtime
 echo "built $TAG from \$rev"
 EOF
